@@ -1,0 +1,12 @@
+#레디스 컨테이너와 서버를 이어주기 위한 설정 파일
+
+version: "3" #도커 컴포즈 버전
+services: #여기에 실행하려는 컨테이너들을 정의 
+  redis-server: #컨테이너이름
+    image: "redis" #컨테이너에서 사용할 이미지
+  node-app: #컨테이너 이름
+    build: . #현 디렉토리에 있는 dockerfile 사용
+    ports: # 포트 맵핑 로컬포트 : 컨테이너 포트
+      - "5000:8080"
+
+      #docker-compose up으로 실행
