@@ -1,0 +1,17 @@
+FROM node:alpine 
+#베이스 이미지를 도커 허브에서 가져옴
+
+WORKDIR /app
+#해당 어플의 소스코드가 들어감
+
+COPY package.json ./
+#소스코드가 바뀔 때마다 종속성 까지 다시 복사해주는 수고를 하지 않기 위해 종속성 목록을 담고 있는 package json을 복사
+
+RUN npm install
+#pakcage.json에 명시된 종속성 다운
+
+COPY ./ ./
+#이제 모든 소스코를 workdir로 복사(package.json에 있는 건 한번만 이미 카피됨)
+
+CMD [ "npm", "run", "start" ]
+#이 컨테이너가 실행 될때 같이 실행할 명령어 지정

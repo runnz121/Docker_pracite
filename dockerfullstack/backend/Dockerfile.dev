@@ -1,0 +1,15 @@
+
+FROM node:alpine
+
+WORKDIR /app
+
+COPY ./package.json ./
+
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "dev"]
+#"dev" start가 아닌 dev인 경우는 nodemone모듈을 사용하기 위함
+#nodemon이란 node소스코드 변경시 중단후 바로 적용시키기 위해 사용
+#package.json의 script 에  "dev": "nodemon server.js" 로 작성했기에 가능
